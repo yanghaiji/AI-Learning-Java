@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.modelcontextprotocol.client.McpClient;
+
 /**
  * <p>
  *
@@ -27,6 +29,9 @@ public class SpringAiController {
 
     @Autowired
     private OpenAiChatModel openAiChatModel;
+
+    @Autowired
+    private McpClient mcpClient;
 
     @GetMapping("/gen")
     public String gen(@RequestParam(value = "msg") String msg) {

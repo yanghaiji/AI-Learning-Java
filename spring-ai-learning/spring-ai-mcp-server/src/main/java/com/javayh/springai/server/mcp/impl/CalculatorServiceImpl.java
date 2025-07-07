@@ -26,7 +26,8 @@ public class CalculatorServiceImpl implements CalculatorService {
      */
     @Tool(description = "计算两个整数的和")
     @Override
-    public int add(int a, int b) {
+    public int add(@ToolParam(description = "first number") int a,
+                   @ToolParam(description = "seconde number") int b) {
         return a + b;
     }
 
