@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  context-path: /spring-ai-client
+#  ai 配置
+
+spring:
+  ai:
+    openai:
+      #      api-key: ${OPENAI_API_KEY}
+#      model: gpt-4o-mini
+      #      temperature: 0.7
+      #      max-tokens: 1024
+      #      timeout: 60000
+      chat:
+        options:
+          model: qwen-plus  # 指定DeepSeek模型
+          temperature: 1.0      # 控制输出随机性
+    #      proxy:
+    #        host: ${PROXY_HOST}
+    #        port: ${PROXY_PORT}
+    #        username: ${PROXY_USERNAME}
+    client:
+      version: v1
+      request-timeout: 30s
+      type: SYNC  # or ASYNC for reactive applications
+      name: spring-ai-client
+      request:
+        timeout: 30
+
+      sse:
+        connections:
+          server1:
+            url: http://localhost:8081/
+            sse-endpoint: /mcp/messages
+    tools:
+      callback:
+        enabled: true
+#      stdio :
+#        root-change-notification: false
+#        connections:
+#          server1:
+#            command: /path/to/server
+#            args:
+#              - --port=8080
+#              - --mode=production
+#            env:
+#              API_KEY: your-api-key
+#              DEBUG: "true"
