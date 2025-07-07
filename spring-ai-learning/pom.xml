@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>springai-client</module>
+        <module>springai-mcp-client</module>
         <module>spring-ai-mcp-server</module>
     </modules>
 
