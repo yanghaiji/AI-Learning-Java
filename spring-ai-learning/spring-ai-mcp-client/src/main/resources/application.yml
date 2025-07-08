@@ -1,13 +1,18 @@
 server:
   port: 8080
-  context-path: /spring-ai-client
 #  ai 配置
 
 spring:
   ai:
+    dashscope:
+      agent:
+        app-id: ${DASHSCOPE_APP_ID}
+      api-key: ${DASHSCOPE_API_KEY}
+      model: qwen-plus
     openai:
-      #      api-key: ${OPENAI_API_KEY}
-#      model: gpt-4o-mini
+      api-key: ${OPENAI_API_KEY}
+      model: qwen-plus
+      base-url:
       #      temperature: 0.7
       #      max-tokens: 1024
       #      timeout: 60000
@@ -19,22 +24,22 @@ spring:
     #        host: ${PROXY_HOST}
     #        port: ${PROXY_PORT}
     #        username: ${PROXY_USERNAME}
-    client:
-      version: v1
-      request-timeout: 30s
-      type: SYNC  # or ASYNC for reactive applications
-      name: spring-ai-client
-      request:
-        timeout: 30
-
-      sse:
-        connections:
-          server1:
-            url: http://localhost:8081/
-            sse-endpoint: /mcp/messages
-    tools:
-      callback:
+    mcp:
+      client:
         enabled: true
+        version: v1
+        request-timeout: 30s
+        type: SYNC  # or ASYNC for reactive applications
+        name: spring-ai-client
+        request:
+          timeout: 30s
+        sse:
+          connections:
+            server1:
+              url: http://localhost:8081
+#              sse-endpoint: /mcp/messages # 暂时不能写 否则启动会找寻这个会报错
+        toolcallback:
+          enabled: true
 #      stdio :
 #        root-change-notification: false
 #        connections:
@@ -46,3 +51,8 @@ spring:
 #            env:
 #              API_KEY: your-api-key
 #              DEBUG: "true"
+
+logging:
+  level:
+    io.modelcontextprotocol: DEBUG
+    org.springframework.web: DEBUG

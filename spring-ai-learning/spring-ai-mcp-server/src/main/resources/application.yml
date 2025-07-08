@@ -1,6 +1,5 @@
 server:
   port: 8081
-  context-path: /spring-ai-server
 spring:
   ai:
     mcp:
@@ -8,7 +7,7 @@ spring:
         name: webmvc-mcp-server
         enabled: true
         version: 1.0.0
-        type: SYNC
+        type: ASYNC
         instructions: "This server provides weather information tools and resources"
         sse-message-endpoint: /mcp/messages
         capabilities:
@@ -16,3 +15,9 @@ spring:
           resource: true
           prompt: true
           completion: true
+
+
+logging:
+  level:
+    io.modelcontextprotocol: INFO
+    org.springframework.web: INFO
