@@ -1,0 +1,45 @@
+server:
+  port: 8084
+
+
+#  ai 配置
+spring:
+  ai:
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+            schema: classpath:schema-@@platform@@.sql
+            platform: h2
+    dashscope:
+      agent:
+        app-id: ${DASH_SCOPE_APP_ID}
+      api-key: ${DASH_SCOPE_API_KEY}
+      model: qwen-plus
+#    openai:
+#      api-key: ${OPENAI_API_KEY}
+#      model: qwen-plus
+#      base-url:
+#      #      temperature: 0.7
+#      #      max-tokens: 1024
+#      #      timeout: 60000
+#      chat:
+#        options:
+#          model: qwen-plus  # 指定DeepSeek模型
+#          temperature: 1.0      # 控制输出随机性
+#    #      proxy:
+#    #        host: ${PROXY_HOST}
+#    #        port: ${PROXY_PORT}
+#    #        username: ${PROXY_USERNAME}
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+        ddl-auto: update
+      show-sql: true
