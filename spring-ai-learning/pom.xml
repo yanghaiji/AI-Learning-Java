@@ -13,6 +13,7 @@
         <module>spring-ai-mcp-server</module>
         <module>spring-ai-rag</module>
         <module>spring-ai-chat</module>
+        <module>spring-ai-prompt-engineering</module>
     </modules>
 
     <properties>
